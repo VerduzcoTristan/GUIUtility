@@ -3,4 +3,4 @@ GUI Library for Bukkit
 
 A elegant, organized solution for your messy GUI inventory menus.
 
-Check out the [wiki](wiki) for a guide
+Check out the [wiki](https://github.com/VerduzcoTristan/GUIUtility/wiki) for a guide
