@@ -24,9 +24,20 @@ public interface UIEntry {
      * <p>
      *     This method is used by {@link UIManager} to build the item with this specified Material.
      * </p>
-     * @return
+     * @return {@link Material}
      */
     Material getType();
+
+    /**
+     * Method to return the Material date of the item.
+     * <p>
+     *     Although {@code @Deprecated} 1.7.X and 1.8.X functionality is <em>Experimentally supported</em>.
+     * </p>
+     * @see org.bukkit.inventory.ItemStack#ItemStack(Material, int, short)
+     * @return
+     */
+    @Deprecated
+    short getData();
 
     /**
      * Method to return the Display name of the Item.
@@ -87,7 +98,7 @@ public interface UIEntry {
      * <p>
      *     At every 'X' interval, this method is called to change/update/modify items in the inventory.
      * </p>
-     * @see UIManager#openGUI(Player, UserInterface)
+     * @see UIManager#openGUI(Player, UserInterface, long, long)
      */
     void onUpdate();
 
