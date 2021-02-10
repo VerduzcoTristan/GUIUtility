@@ -21,7 +21,6 @@ import java.util.UUID;
  */
 public class UIListeners implements Listener {
 
-    private final JavaPlugin plugin;
     private final UserInterface userInterface;
     private final UIManager manager;
 
@@ -31,18 +30,15 @@ public class UIListeners implements Listener {
      *     This constructor simply assigns different values in the class.
      *     <br>Varaibles assigned:
      *     <ol>
-     *             {@link UIListeners#plugin},
      *             {@link UIListeners#userInterface},
      *             {@link UIListeners#manager}
      *     </ol>
      * </p>
      *
-     * @param plugin {@link JavaPlugin} object.
      * @param userInterface {@link UserInterface} object.
      * @param manager {@link UIManager} object.
      */
-    public UIListeners(JavaPlugin plugin, UserInterface userInterface, UIManager manager) {
-        this.plugin = plugin;
+    public UIListeners(UserInterface userInterface, UIManager manager) {
         this.userInterface = userInterface;
         this.manager = manager;
     }
@@ -59,9 +55,9 @@ public class UIListeners implements Listener {
      */
     @EventHandler
     public void onClick(InventoryClickEvent event) {
+        if (event.getClickedInventory() == null) return; // Clicked Inventory is Nullable.
         if (event.getClickedInventory().equals(userInterface.getInventory())) {
             event.setCancelled(true);
-
             int slot = event.getSlot();
             for (UIEntry UIEntry : userInterface.getEntries()) {
                 if (UIEntry.getSlot() == slot) {
