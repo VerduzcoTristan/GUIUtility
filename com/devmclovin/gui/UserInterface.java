@@ -19,16 +19,6 @@ import java.util.List;
 public interface UserInterface {
 
     /**
-     * Method to return the String identifier of the UI.
-     * <p>
-     *     This method is not called or used by any in-API methods.
-     * </p>
-     *
-     * @return Identifier in the form of String.
-     */
-    String getIdentifier();
-
-    /**
      * Method to return all {@link UIEntry} objects for the {@link Inventory}.
      * <p>
      *     This method can return an empty list.
@@ -62,7 +52,7 @@ public interface UserInterface {
     /**
      * Void method which is called upon Open of the {@link Inventory}
      * <p>
-     *     This method is a bridge from {@link UIManager#openGUI(Player, UserInterface)}.
+     *     This method is a bridge from {@link UIManager#openGUI(Player, UserInterface, long, long)}.
      * </p>
      */
     void onOpen();
@@ -79,7 +69,7 @@ public interface UserInterface {
      * Method to return the {@link Inventory} instance.
      * <p>
      *     When built, the {@link Inventory} object will be set using {@link UserInterface#setInventory(Inventory)}.
-     *     <br>The Inventory is built by {@link UIManager#openGUI(Player, UserInterface)}.
+     *     <br>The Inventory is built by {@link UIManager#openGUI(Player, UserInterface, long, long)}.
      * </p>
      *
      * @return
@@ -89,7 +79,7 @@ public interface UserInterface {
     /**
      * Method to set the {@link Inventory} instance.
      * <p>
-     *     This is called by {@link UIManager#openGUI(Player, UserInterface)}.
+     *     This is called by {@link UIManager#openGUI(Player, UserInterface, long, long)}.
      *     <br>The instance should be saved on an in-class level,
      *     and then retrieved using {@link UserInterface#getInventory()}.
      * </p>
