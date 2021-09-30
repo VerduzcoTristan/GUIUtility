@@ -1,35 +1,37 @@
-package com.devmclovin.gui;
+package gui;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class GUIListeners implements Listener
 {
     private final JavaPlugin plugin;
     private final GUI gui;
-    private final GUIManager manager;
 
-    public GUIListeners(JavaPlugin plugin, GUI gui, GUIManager manager)
+    public GUIListeners(JavaPlugin plugin, GUI gui)
     {
         this.plugin = plugin;
         this.gui = gui;
-        this.manager = manager;
+        System.out.println(0);
     }
 
     @EventHandler
     public void onClick(InventoryClickEvent event)
     {
-        if (event.getClickedInventory().equals(gui.getInventory()))
+        System.out.println(1);
+        if (event.getClickedInventory().equals(gui.inventory))
         {
+            System.out.println(2);
             event.setCancelled(true);
 
-            int slot = event.getSlot();
-            for (Entry entry : gui.getEntries())
+            int clickedSlot = event.getSlot();
+            for (Entry entry : gui.entries)
             {
-                if (entry.getSlot() == slot)
+                if (entry.slot == clickedSlot)
                 {
                     entry.onClick(event);
                 }
@@ -40,12 +42,20 @@ public class GUIListeners implements Listener
     @EventHandler
     public void onClose(InventoryCloseEvent event)
     {
-        if (event.getInventory().equals(gui.getInventory()))
+        if (event.getInventory().equals(gui.inventory))
         {
-            gui.onClose();
+            gui.onClose(event);
             InventoryCloseEvent.getHandlerList().unregister(this);
             InventoryClickEvent.getHandlerList().unregister(this);
-            manager.cancelTask(event.getPlayer().getUniqueId());
+        }
+    }
+
+    @EventHandler
+    public void onOpen(InventoryOpenEvent event)
+    {
+        if (event.getInventory().equals(gui.inventory))
+        {
+            gui.onOpen(event);
         }
     }
 }
