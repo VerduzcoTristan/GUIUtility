@@ -21,10 +21,8 @@ public class GUIListeners implements Listener
     @EventHandler
     public void onClick(InventoryClickEvent event)
     {
-        System.out.println(1);
         if (event.getClickedInventory().equals(gui.inventory))
         {
-            System.out.println(2);
             event.setCancelled(true);
 
             int clickedSlot = event.getSlot();
