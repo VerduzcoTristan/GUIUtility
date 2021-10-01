@@ -16,7 +16,6 @@ public class GUIListeners implements Listener
     {
         this.plugin = plugin;
         this.gui = gui;
-        System.out.println(0);
     }
 
     @EventHandler
