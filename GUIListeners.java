@@ -44,6 +44,7 @@ public class GUIListeners implements Listener
             gui.onClose(event);
             InventoryCloseEvent.getHandlerList().unregister(this);
             InventoryClickEvent.getHandlerList().unregister(this);
+            InventoryOpenEvent.getHandlerList().unregister(this);
         }
     }
 
